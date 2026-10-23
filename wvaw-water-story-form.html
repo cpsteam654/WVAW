@@ -1,0 +1,208 @@
+<!-- ============================================================
+  WVAW "Tell your water story" form  →  sends entries to Jotform
+  Jotform form: "WVAW Water Story"  (ID 262956670309062)
+
+  HOW TO USE
+  • Squarespace / Wix / WordPress: paste this whole file into a
+    Code / Custom HTML / Embed block on the water-story page.
+  • Custom site: drop it into the page where the story form goes.
+  Everything is scoped to .wvaw-story so it won't affect the
+  rest of the site.
+  ============================================================ -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap">
+
+<style>
+.wvaw-story{--ink:#10302A;--deep:#24603F;--mint:#A8E0CC;--teal:#1E6E66;--paper:#F1F6F1;--haze:#9CC9C0;--river:#46C1C0;--muted:#3B5A50;
+  font-family:'Barlow',system-ui,sans-serif;color:var(--ink);box-sizing:border-box;max-width:1000px;margin:0 auto}
+.wvaw-story *,.wvaw-story *::before,.wvaw-story *::after{box-sizing:border-box}
+.wvaw-story .ws-head{text-align:center;margin-bottom:28px}
+.wvaw-story .ws-eyebrow{margin:0 0 14px;font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.wvaw-story h2{margin:0;font-family:'Alfa Slab One',serif;font-weight:400;font-size:clamp(40px,5vw,72px);line-height:1.02}
+.wvaw-story .ws-sub{margin:16px auto 0;max-width:600px;font-size:19px;line-height:1.55}
+
+.wvaw-story .ws-card{background:var(--paper);border-radius:6px;box-shadow:0 30px 60px rgba(16,48,42,.3);overflow:hidden}
+.wvaw-story .ws-banner{display:block;width:100%;height:120px}
+.wvaw-story .ws-body{padding:36px 44px 44px}
+.wvaw-story .ws-section{margin:0 0 30px;padding:0;border:0}
+.wvaw-story .ws-section>legend{padding:0;margin:0 0 18px;font-family:'Alfa Slab One',serif;font-size:26px;line-height:1.1;color:var(--ink)}
+.wvaw-story .ws-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 28px}
+.wvaw-story .ws-span{grid-column:span 2}
+.wvaw-story .ws-field{display:flex;flex-direction:column;gap:2px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.wvaw-story .ws-opt{font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted)}
+.wvaw-story input[type=text],.wvaw-story input[type=email],.wvaw-story input[type=tel],.wvaw-story select{
+  border:0;border-bottom:2px solid var(--ink);background:transparent;color:var(--ink);font:400 18px 'Barlow',sans-serif;padding:8px 0;border-radius:0;width:100%;text-transform:none;letter-spacing:0}
+.wvaw-story textarea{width:100%;min-height:220px;resize:vertical;border:2px solid var(--ink);border-radius:4px;padding:14px 16px;color:var(--ink);
+  font:400 18px/32px 'Barlow',sans-serif;text-transform:none;letter-spacing:0;
+  background:#fff repeating-linear-gradient(to bottom,transparent 0,transparent 31px,#CFE3DB 31px,#CFE3DB 32px);background-position:0 13px}
+.wvaw-story input:focus,.wvaw-story select:focus{outline:none;border-bottom:3px solid var(--teal)}
+.wvaw-story textarea:focus{outline:3px solid var(--teal);outline-offset:1px}
+.wvaw-story ::placeholder{color:#6E8A80}
+.wvaw-story .ws-hint{font-size:14px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted);margin:4px 0 8px}
+.wvaw-story .ws-q{margin:0;padding:0;border:0}
+.wvaw-story .ws-q>legend{padding:0;margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.wvaw-story .ws-pills{display:flex;flex-wrap:wrap;gap:8px}
+.wvaw-story .ws-pills input{position:absolute;opacity:0;width:1px;height:1px}
+.wvaw-story .ws-pills label{min-height:44px;padding:0 16px;border-radius:4px;border:2px solid var(--ink);display:inline-flex;align-items:center;cursor:pointer;font-size:15px;font-weight:600}
+.wvaw-story .ws-pills input:checked+label{background:var(--ink);color:#fff}
+.wvaw-story .ws-pills input:focus-visible+label{outline:3px solid var(--teal);outline-offset:2px}
+.wvaw-story .ws-upload{position:relative;display:flex;align-items:center;gap:16px;padding:16px;border:2px dashed #6E8A80;border-radius:4px;cursor:pointer;font-size:15px;text-transform:none;letter-spacing:0;font-weight:500}
+.wvaw-story .ws-upload input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.wvaw-story .ws-upload strong{display:block;font-size:17px}
+.wvaw-story .ws-perm{display:flex;flex-direction:column;gap:22px;padding:24px;background:#E3EFEA;border-radius:4px}
+.wvaw-story .ws-submit{margin-top:8px;min-height:60px;padding:0 32px;border:0;border-radius:4px;background:var(--ink);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:14px;
+  font-family:'Barlow Condensed',sans-serif;font-size:23px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;transition:transform .2s}
+.wvaw-story .ws-submit:hover{transform:translateY(-2px)}
+.wvaw-story .ws-submit[disabled]{opacity:.7;cursor:wait}
+.wvaw-story [hidden]{display:none!important}
+.wvaw-story .ws-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@keyframes wsDrip{0%{transform:translateY(0);opacity:0}15%{opacity:1}80%{transform:translateY(26px);opacity:1}100%{transform:translateY(30px);opacity:0}}
+.wvaw-story .ws-drip{animation:wsDrip 2.2s ease-in infinite}
+@media (prefers-reduced-motion:reduce){.wvaw-story .ws-drip{animation:none}}
+@media (max-width:640px){
+  .wvaw-story .ws-body{padding:24px 20px 32px}
+  .wvaw-story .ws-grid{grid-template-columns:1fr}.wvaw-story .ws-span{grid-column:auto}
+}
+</style>
+
+<form class="wvaw-story" id="wvaw-story" action="https://submit.jotform.com/submit/262956670309062" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="on">
+  <!-- Jotform required hidden fields -->
+  <input type="hidden" name="formID" value="262956670309062">
+  <input type="hidden" name="simple_spc" value="262956670309062-262956670309062">
+  <input type="hidden" name="submitSource" value="form">
+  <input type="hidden" name="q16_q16_textbox14" value="website">
+  <!-- spam trap: must stay empty -->
+  <div class="ws-hp" aria-hidden="true"><label>Leave blank<input type="text" name="website" value="" tabindex="-1" autocomplete="off"></label></div>
+
+  <div class="ws-head">
+    <p class="ws-eyebrow">Take action</p>
+    <h2>Tell your water story</h2>
+    <p class="ws-sub">How has your water or sewer bill changed? Your story helps regulators see the real cost of every rate case.</p>
+  </div>
+
+  <div class="ws-card">
+    <!-- illustrated banner: hills, river, porch faucet -->
+    <svg class="ws-banner" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="1000" height="120" fill="#A8E0CC"/>
+      <path d="M0 70 L120 34 L240 58 L380 20 L520 56 L660 28 L800 60 L920 30 L1000 48 V120 H0 Z" fill="#9CC9C0"/>
+      <path d="M0 90 L160 62 L320 84 L500 58 L680 86 L860 62 L1000 80 V120 H0 Z" fill="#6FAE7B"/>
+      <path d="M0 108 C 200 92, 420 118, 640 100 S 900 96, 1000 106 V120 H0 Z" fill="#46C1C0"/>
+      <g fill="#24603F"><path d="M90 74 L81 90 H86 L78 104 H102 L94 90 H99 Z"/><path d="M116 80 L107 96 H112 L104 110 H128 L120 96 H125 Z"/><path d="M880 70 L871 86 H876 L868 100 H892 L884 86 H889 Z"/></g>
+      <path d="M740 30 H780 V44" fill="none" stroke="#10302A" stroke-width="7" stroke-linecap="round"/>
+      <rect x="730" y="24" width="18" height="14" rx="3" fill="#10302A"/>
+      <circle class="ws-drip" cx="780" cy="52" r="5" fill="#1E6E66"/>
+    </svg>
+
+    <div class="ws-body">
+      <!-- ABOUT YOU -->
+      <fieldset class="ws-section">
+        <legend>About you</legend>
+        <div class="ws-grid">
+          <label class="ws-field">First name<input type="text" name="q2_q2_fullname0[first]" autocomplete="given-name" required></label>
+          <label class="ws-field">Last name<input type="text" name="q2_q2_fullname0[last]" autocomplete="family-name" required></label>
+          <label class="ws-field">Email<input type="email" name="q3_q3_email1" autocomplete="email" required></label>
+          <label class="ws-field">Phone <span class="ws-opt">(optional)</span><input type="tel" name="q4_q4_phone2[full]" autocomplete="tel-national" placeholder="(000) 000-0000"></label>
+          <label class="ws-field">County
+            <select name="q5_q5_dropdown3" required>
+              <option value="">Choose your county</option>
+              <option>Barbour</option><option>Berkeley</option><option>Boone</option><option>Braxton</option><option>Brooke</option><option>Cabell</option><option>Calhoun</option><option>Clay</option><option>Doddridge</option><option>Fayette</option><option>Gilmer</option><option>Grant</option><option>Greenbrier</option><option>Hampshire</option><option>Hancock</option><option>Hardy</option><option>Harrison</option><option>Jackson</option><option>Jefferson</option><option>Kanawha</option><option>Lewis</option><option>Lincoln</option><option>Logan</option><option>Marion</option><option>Marshall</option><option>Mason</option><option>McDowell</option><option>Mercer</option><option>Mineral</option><option>Mingo</option><option>Monongalia</option><option>Monroe</option><option>Morgan</option><option>Nicholas</option><option>Ohio</option><option>Pendleton</option><option>Pleasants</option><option>Pocahontas</option><option>Preston</option><option>Putnam</option><option>Raleigh</option><option>Randolph</option><option>Ritchie</option><option>Roane</option><option>Summers</option><option>Taylor</option><option>Tucker</option><option>Tyler</option><option>Upshur</option><option>Wayne</option><option>Webster</option><option>Wetzel</option><option>Wirt</option><option>Wood</option><option>Wyoming</option>
+            </select>
+          </label>
+          <label class="ws-field">Town <span class="ws-opt">(optional)</span><input type="text" name="q6_q6_textbox4" autocomplete="address-level2"></label>
+          <label class="ws-field ws-span">Who provides your water/sewer service? <span class="ws-opt">(optional)</span><input type="text" name="q7_q7_textbox5" placeholder="Your city, public service district or company. Not sure? That’s OK."></label>
+        </div>
+      </fieldset>
+
+      <!-- YOUR STORY -->
+      <fieldset class="ws-section">
+        <legend>Your story</legend>
+        <div class="ws-grid">
+          <label class="ws-field ws-span">In your own words
+            <span class="ws-hint">How has your bill or service changed, and how has it affected you or your family?</span>
+            <textarea name="q8_q8_textarea6" required></textarea>
+          </label>
+          <label class="ws-field">Monthly bill now <span class="ws-opt">(approx., optional)</span><input type="text" name="q9_q9_textbox7" inputmode="decimal" placeholder="$"></label>
+          <label class="ws-field">Monthly bill before <span class="ws-opt">(approx., optional)</span><input type="text" name="q10_q10_textbox8" inputmode="decimal" placeholder="$"></label>
+          <fieldset class="ws-q ws-span">
+            <legend>Service or quality problems <span class="ws-opt">(check any)</span></legend>
+            <div class="ws-pills">
+              <input type="checkbox" id="ws-p1" name="q11_q11_checkbox9[]" value="Boil-water notices"><label for="ws-p1">Boil-water notices</label>
+              <input type="checkbox" id="ws-p2" name="q11_q11_checkbox9[]" value="Discolored water"><label for="ws-p2">Discolored water</label>
+              <input type="checkbox" id="ws-p3" name="q11_q11_checkbox9[]" value="Low pressure"><label for="ws-p3">Low pressure</label>
+              <input type="checkbox" id="ws-p4" name="q11_q11_checkbox9[]" value="Outages"><label for="ws-p4">Outages</label>
+            </div>
+          </fieldset>
+          <label class="ws-field ws-span">Something else? <span class="ws-opt">(optional)</span><input type="text" name="q11_q11_checkbox9[other]" placeholder="Describe another problem"></label>
+          <label class="ws-upload ws-span">
+            <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 22V6M9 13l7-7 7 7M5 27h22" fill="none" stroke="#1E6E66" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong class="ws-upload-title">Add a photo of your bill or water (optional)</strong>JPG, PNG or PDF. Please cover your account number first.</span>
+            <input type="file" name="q12_q12_fileupload10[]" accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf" multiple>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- PERMISSIONS -->
+      <fieldset class="ws-section">
+        <legend>Sharing your story</legend>
+        <div class="ws-perm">
+          <fieldset class="ws-q">
+            <legend>May WVAW share your story publicly?</legend>
+            <div class="ws-pills">
+              <input type="radio" id="ws-s1" name="q13_q13_radio11" value="Yes" required><label for="ws-s1">Yes</label>
+              <input type="radio" id="ws-s2" name="q13_q13_radio11" value="No"><label for="ws-s2">No, keep it private</label>
+            </div>
+          </fieldset>
+          <fieldset class="ws-q ws-identify" hidden>
+            <legend>How should we identify you?</legend>
+            <div class="ws-pills">
+              <input type="radio" id="ws-i1" name="q14_q14_radio12" value="Full name" disabled><label for="ws-i1">Full name</label>
+              <input type="radio" id="ws-i2" name="q14_q14_radio12" value="First name and county" disabled><label for="ws-i2">First name and county</label>
+              <input type="radio" id="ws-i3" name="q14_q14_radio12" value="[County] County resident only" disabled><label for="ws-i3">County resident only</label>
+            </div>
+          </fieldset>
+          <fieldset class="ws-q">
+            <legend>May we contact you to follow up, including about media or public hearings?</legend>
+            <div class="ws-pills">
+              <input type="radio" id="ws-f1" name="q15_q15_radio13" value="Yes" required><label for="ws-f1">Yes</label>
+              <input type="radio" id="ws-f2" name="q15_q15_radio13" value="No"><label for="ws-f2">No</label>
+            </div>
+          </fieldset>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="ws-submit"><span class="ws-submit-label">Share my story</span> <span aria-hidden="true">→</span></button>
+    </div>
+  </div>
+</form>
+
+<script>
+(function () {
+  var form = document.getElementById('wvaw-story');
+  if (!form) return;
+
+  // "How should we identify you?" only appears (and is required) when sharing publicly
+  var identify = form.querySelector('.ws-identify');
+  var idRadios = identify.querySelectorAll('input');
+  function syncIdentify() {
+    var share = form.querySelector('input[name="q13_q13_radio11"]:checked');
+    var show = !!share && share.value === 'Yes';
+    identify.hidden = !show;
+    idRadios.forEach(function (r, i) { r.disabled = !show; r.required = show && i === 0; if (!show) r.checked = false; });
+  }
+  form.querySelectorAll('input[name="q13_q13_radio11"]').forEach(function (r) { r.addEventListener('change', syncIdentify); });
+  syncIdentify();
+
+  // Show chosen photo file names
+  var file = form.querySelector('input[type=file]'), title = form.querySelector('.ws-upload-title');
+  file.addEventListener('change', function () {
+    if (!file.files.length) return;
+    title.textContent = file.files.length === 1 ? file.files[0].name : file.files.length + ' files selected';
+  });
+
+  // Prevent double submits
+  form.addEventListener('submit', function () {
+    var btn = form.querySelector('.ws-submit'), label = form.querySelector('.ws-submit-label');
+    setTimeout(function () { btn.disabled = true; label.textContent = 'Sending…'; }, 0);
+  });
+})();
+</script>
