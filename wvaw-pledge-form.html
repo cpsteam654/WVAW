@@ -1,0 +1,233 @@
+<!-- ============================================================
+  WVAW Pledge postcard form  →  sends entries to Jotform
+  Jotform form: "WVAW Pledge Form"  (ID 262956153235056)
+
+  HOW TO USE
+  • Squarespace / Wix / WordPress: paste this whole file into a
+    Code / Custom HTML / Embed block on the pledge section.
+  • Custom site: drop it into the page where the postcard goes.
+  Everything is scoped to .wvaw-pledge so it won't affect the
+  rest of the site.
+  ============================================================ -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap">
+
+<style>
+.wvaw-pledge{--ink:#10302A;--deep:#24603F;--mint:#A8E0CC;--teal:#1E6E66;--paper:#F1F6F1;--haze:#9CC9C0;--muted:#3B5A50;
+  font-family:'Barlow',system-ui,sans-serif;color:var(--ink);box-sizing:border-box;max-width:1180px;margin:0 auto}
+.wvaw-pledge *,.wvaw-pledge *::before,.wvaw-pledge *::after{box-sizing:border-box}
+.wvaw-pledge .wv-head{text-align:center;margin-bottom:28px}
+.wvaw-pledge .wv-eyebrow{margin:0 0 14px;font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.wvaw-pledge h2{margin:0;font-family:'Alfa Slab One',serif;font-weight:400;font-size:clamp(40px,5vw,72px);line-height:1.02}
+
+/* tabs (real radio buttons = Jotform field "I'm signing as") */
+.wvaw-pledge .wv-tabs{margin:28px auto 0;display:inline-flex;gap:4px;padding:4px;background:var(--ink);border-radius:6px;border:0}
+.wvaw-pledge .wv-tabs input{position:absolute;opacity:0;width:1px;height:1px}
+.wvaw-pledge .wv-tabs label{min-height:48px;padding:0 22px;border-radius:4px;display:inline-flex;align-items:center;cursor:pointer;color:#DDEFE9;
+  font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.wvaw-pledge .wv-tabs input:checked+label{background:var(--mint);color:var(--ink)}
+.wvaw-pledge .wv-tabs input:focus-visible+label{outline:3px solid #fff;outline-offset:2px}
+
+/* postcard */
+.wvaw-pledge .wv-card{background:var(--paper);border-radius:6px;box-shadow:0 30px 60px rgba(16,48,42,.35);display:flex;flex-wrap:wrap;overflow:hidden;transform:rotate(-.6deg)}
+.wvaw-pledge .wv-front{flex:1 1 380px;position:relative;min-height:460px;background:var(--mint);overflow:hidden}
+.wvaw-pledge .wv-front svg{position:absolute;inset:0;width:100%;height:100%}
+.wvaw-pledge .wv-front-text{position:relative;padding:44px 36px}
+.wvaw-pledge .wv-greet{margin:0;font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--deep)}
+.wvaw-pledge .wv-wv{margin:4px 0 0;font-family:'Alfa Slab One',serif;font-size:clamp(52px,6vw,80px);line-height:.92;color:#fff;text-shadow:4px 4px 0 var(--deep),6px 6px 0 var(--ink)}
+.wvaw-pledge .wv-back{flex:1.15 1 460px;min-width:0;padding:16px 40px 36px;border-left:2px dashed var(--haze)}
+.wvaw-pledge .wv-top{display:flex;gap:24px;align-items:flex-start}
+.wvaw-pledge .wv-top-fields{flex:1;min-width:0;display:flex;flex-direction:column;gap:22px}
+.wvaw-pledge .wv-stampbox{flex:none;position:relative;width:190px;height:124px}
+.wvaw-pledge .wv-stamp{position:absolute;right:0;top:0;width:92px;height:112px;background:#fff;padding:6px;outline:3px dotted var(--paper);outline-offset:-3px;box-shadow:0 0 0 2px var(--haze)}
+.wvaw-pledge .wv-grid{margin-top:22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 28px}
+.wvaw-pledge .wv-span{grid-column:span 2}
+.wvaw-pledge .wv-field{display:flex;flex-direction:column;gap:2px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.wvaw-pledge .wv-row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.wvaw-pledge input[type=text],.wvaw-pledge input[type=email],.wvaw-pledge input[type=url],.wvaw-pledge select{
+  border:0;border-bottom:2px solid var(--ink);background:transparent;color:var(--ink);font:400 18px 'Barlow',sans-serif;padding:8px 0;border-radius:0;width:100%;text-transform:none;letter-spacing:0}
+.wvaw-pledge input:focus,.wvaw-pledge select:focus{outline:none;border-bottom:3px solid var(--teal)}
+.wvaw-pledge fieldset{border:0;padding:0;margin:0}
+.wvaw-pledge legend{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;padding:0}
+.wvaw-pledge .wv-pills{display:flex;flex-wrap:wrap;gap:8px}
+.wvaw-pledge .wv-pills input{position:absolute;opacity:0;width:1px;height:1px}
+.wvaw-pledge .wv-pills label{min-height:44px;padding:0 16px;border-radius:4px;border:2px solid var(--ink);display:inline-flex;align-items:center;cursor:pointer;font-size:15px;font-weight:600}
+.wvaw-pledge .wv-pills input:checked+label{background:var(--ink);color:#fff}
+.wvaw-pledge .wv-pills input:focus-visible+label{outline:3px solid var(--teal);outline-offset:2px}
+.wvaw-pledge .wv-check{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5}
+.wvaw-pledge .wv-check input{width:22px;height:22px;margin:1px 0 0;accent-color:var(--teal);flex:none}
+.wvaw-pledge .wv-upload{position:relative;display:flex;align-items:center;gap:16px;padding:16px;border:2px dashed #6E8A80;border-radius:4px;cursor:pointer;font-size:15px}
+.wvaw-pledge .wv-upload input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.wvaw-pledge .wv-upload strong{display:block;font-size:17px}
+.wvaw-pledge .wv-submit{margin-top:30px;min-height:60px;padding:0 32px;border:0;border-radius:4px;background:var(--ink);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:14px;
+  font-family:'Barlow Condensed',sans-serif;font-size:23px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;transition:transform .2s}
+.wvaw-pledge .wv-submit:hover{transform:translateY(-2px)}
+.wvaw-pledge .wv-submit[disabled]{opacity:.7;cursor:wait}
+.wvaw-pledge [hidden]{display:none!important}
+.wvaw-pledge .wv-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media (max-width:640px){
+  .wvaw-pledge .wv-back{padding:16px 20px 28px;border-left:0;border-top:2px dashed var(--haze)}
+  .wvaw-pledge .wv-grid{grid-template-columns:1fr}.wvaw-pledge .wv-span{grid-column:auto}
+  .wvaw-pledge .wv-top{flex-direction:column-reverse}.wvaw-pledge .wv-stampbox{align-self:flex-end}
+  .wvaw-pledge .wv-tabs label{padding:0 14px;font-size:17px}
+}
+</style>
+
+<form class="wvaw-pledge" id="wvaw-pledge" action="https://submit.jotform.com/submit/262956153235056" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="on">
+  <!-- Jotform required hidden fields -->
+  <input type="hidden" name="formID" value="262956153235056">
+  <input type="hidden" name="simple_spc" value="262956153235056-262956153235056">
+  <input type="hidden" name="submitSource" value="form">
+  <input type="hidden" name="q16_q16_textbox14" value="website-postcard">
+  <input type="hidden" name="q17_q17_dropdown15" value="Pending">
+  <!-- spam trap: must stay empty -->
+  <div class="wv-hp" aria-hidden="true"><label>Leave blank<input type="text" name="website" value="" tabindex="-1" autocomplete="off"></label></div>
+
+  <div class="wv-head">
+    <p class="wv-eyebrow">Take the pledge</p>
+    <h2>Send us your name.</h2>
+    <!-- Jotform Q2: I'm signing as -->
+    <fieldset class="wv-tabs" aria-label="Who is signing">
+      <input type="radio" id="wv-t-ind" name="q2_q2_radio0" value="Individual" checked><label for="wv-t-ind">As an individual</label>
+      <input type="radio" id="wv-t-org" name="q2_q2_radio0" value="Organization"><label for="wv-t-org">As an organization</label>
+    </fieldset>
+  </div>
+
+  <div class="wv-card">
+    <!-- postcard front -->
+    <div class="wv-front" aria-hidden="true">
+      <svg viewBox="0 0 520 600" preserveAspectRatio="xMidYMid slice">
+        <g fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="9 8">
+          <path d="M-10 120 C 60 160, 40 240, 110 300 S 200 420, 160 610"/>
+          <path d="M530 80 C 440 120, 420 200, 360 230 S 260 300, 280 380"/>
+          <path d="M530 470 C 450 450, 400 500, 330 520 S 220 560, 200 610"/>
+        </g>
+        <g font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="14" letter-spacing="3" fill="#24603F">
+          <text x="56" y="190" transform="rotate(62 56 190)">NEW RIVER</text>
+          <text x="380" y="190" transform="rotate(-30 380 190)">POTOMAC</text>
+          <text x="350" y="500" transform="rotate(-14 350 500)">GREENBRIER</text>
+          <text x="190" y="570" transform="rotate(-64 190 570)">KANAWHA</text>
+        </g>
+        <g fill="none" stroke="#24603F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M416 306 L426 293 L431 299 L435 295 L444 306"/><path d="M456 326 L466 313 L471 319 L475 315 L484 326"/>
+          <path d="M76 466 L86 453 L91 459 L95 455 L104 466"/><path d="M446 566 L456 553 L461 559 L465 555 L474 566"/>
+        </g>
+        <g fill="#24603F">
+          <path d="M440 396 L431 412 H436 L428 426 H452 L444 412 H449 Z"/><path d="M462 408 L453 424 H458 L450 438 H474 L466 424 H471 Z"/>
+          <path d="M40 306 L31 322 H36 L28 336 H52 L44 322 H49 Z"/><path d="M280 536 L271 552 H276 L268 566 H292 L284 552 H289 Z"/>
+          <path d="M110 520 C 114 506, 132 502, 144 508 L150 504 L152 512 C 154 520, 140 526, 124 524 L120 530 H114 L116 522 Z"/>
+        </g>
+      </svg>
+      <div class="wv-front-text">
+        <p class="wv-greet">Greetings from</p>
+        <p class="wv-wv">West<span style="display:block">Virginia</span></p>
+      </div>
+    </div>
+
+    <!-- postcard back: the form -->
+    <div class="wv-back">
+
+      <!-- ===== INDIVIDUAL ===== -->
+      <div class="wv-ind">
+        <div class="wv-top">
+          <div class="wv-top-fields">
+            <div class="wv-row2">
+              <label class="wv-field">First name<input type="text" name="q3_q3_fullname1[first]" autocomplete="given-name" required></label>
+              <label class="wv-field">Last name<input type="text" name="q3_q3_fullname1[last]" autocomplete="family-name" required></label>
+            </div>
+            <label class="wv-field">Email<input type="email" name="q4_q4_email2" autocomplete="email" required></label>
+          </div>
+          <div class="wv-stampbox" aria-hidden="true">
+            <svg style="position:absolute;left:0;top:26px" width="120" height="70" viewBox="0 0 120 70"><circle cx="40" cy="35" r="30" fill="none" stroke="#6E8A80" stroke-width="2"/><text x="40" y="32" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="800" font-size="10" fill="#6E8A80" letter-spacing="1">WVAW</text><text x="40" y="45" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="9" fill="#6E8A80">2026</text><path d="M72 22 C 82 16, 92 28, 120 20 M72 35 C 82 29, 92 41, 120 33 M72 48 C 82 42, 92 54, 120 46" fill="none" stroke="#6E8A80" stroke-width="2"/></svg>
+            <div class="wv-stamp"><svg width="80" height="100" viewBox="0 0 80 100"><rect width="80" height="100" fill="#DDEFE9"/><path d="M0 72 L20 58 L36 66 L56 50 L80 64 V100 H0 Z" fill="#3F8A55"/><g transform="translate(12 22) scale(1.5)"><path d="M0 12 C 8 4, 20 2, 30 6 L36 2 L34 10 C 32 18, 16 20, 6 18 Z" fill="#B5232F"/><path d="M26 5 L29 -4 L32 5 Z" fill="#B5232F"/><path d="M10 10 L20 -2 L22 12 Z" fill="#8E1A24"/></g><text x="40" y="94" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="800" font-size="10" fill="#fff" letter-spacing="1">WV</text></svg></div>
+          </div>
+        </div>
+        <div class="wv-grid">
+          <label class="wv-field">County
+            <select name="q5_q5_dropdown3" required>
+              <option value="">Choose your county</option>
+              <option>Barbour</option><option>Berkeley</option><option>Boone</option><option>Braxton</option><option>Brooke</option><option>Cabell</option><option>Calhoun</option><option>Clay</option><option>Doddridge</option><option>Fayette</option><option>Gilmer</option><option>Grant</option><option>Greenbrier</option><option>Hampshire</option><option>Hancock</option><option>Hardy</option><option>Harrison</option><option>Jackson</option><option>Jefferson</option><option>Kanawha</option><option>Lewis</option><option>Lincoln</option><option>Logan</option><option>McDowell</option><option>Marion</option><option>Marshall</option><option>Mason</option><option>Mercer</option><option>Mineral</option><option>Mingo</option><option>Monongalia</option><option>Monroe</option><option>Morgan</option><option>Nicholas</option><option>Ohio</option><option>Pendleton</option><option>Pleasants</option><option>Pocahontas</option><option>Preston</option><option>Putnam</option><option>Raleigh</option><option>Randolph</option><option>Ritchie</option><option>Roane</option><option>Summers</option><option>Taylor</option><option>Tucker</option><option>Tyler</option><option>Upshur</option><option>Wayne</option><option>Webster</option><option>Wetzel</option><option>Wirt</option><option>Wood</option><option>Wyoming</option>
+            </select>
+          </label>
+          <label class="wv-field">ZIP<input type="text" name="q6_q6_textbox4" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" required></label>
+          <fieldset class="wv-span">
+            <legend>I’m signing as a</legend>
+            <div class="wv-pills">
+              <input type="radio" id="wv-r1" name="q7_q7_radio5" value="Customer" required><label for="wv-r1">Customer</label>
+              <input type="radio" id="wv-r2" name="q7_q7_radio5" value="Consumer advocate"><label for="wv-r2">Consumer advocate</label>
+              <input type="radio" id="wv-r3" name="q7_q7_radio5" value="Utility leader"><label for="wv-r3">Utility leader</label>
+              <input type="radio" id="wv-r4" name="q7_q7_radio5" value="Concerned citizen"><label for="wv-r4">Concerned citizen</label>
+            </div>
+          </fieldset>
+          <label class="wv-check wv-span"><input type="checkbox" name="q8_q8_checkbox6[]" value="I stand with the WVAW principles and want updates when rate cases come to my community." checked>I stand with the WVAW principles and want updates when rate cases come to my community.</label>
+        </div>
+      </div>
+
+      <!-- ===== ORGANIZATION ===== -->
+      <div class="wv-org" hidden>
+        <div class="wv-top">
+          <div class="wv-top-fields">
+            <label class="wv-field">Organization name<input type="text" name="q9_q9_textbox7" autocomplete="organization" required></label>
+            <label class="wv-field">Website<input type="url" name="q10_q10_textbox8" placeholder="https://"></label>
+          </div>
+          <div class="wv-stampbox" aria-hidden="true">
+            <svg style="position:absolute;left:0;top:26px" width="120" height="70" viewBox="0 0 120 70"><circle cx="40" cy="35" r="30" fill="none" stroke="#6E8A80" stroke-width="2"/><text x="40" y="32" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="800" font-size="10" fill="#6E8A80" letter-spacing="1">WVAW</text><text x="40" y="45" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="9" fill="#6E8A80">2026</text><path d="M72 22 C 82 16, 92 28, 120 20 M72 35 C 82 29, 92 41, 120 33 M72 48 C 82 42, 92 54, 120 46" fill="none" stroke="#6E8A80" stroke-width="2"/></svg>
+            <div class="wv-stamp"><svg width="80" height="100" viewBox="0 0 80 100"><rect width="80" height="100" fill="#DDEFE9"/><path d="M0 72 L20 58 L36 66 L56 50 L80 64 V100 H0 Z" fill="#3F8A55"/><g transform="translate(12 22) scale(1.5)"><path d="M0 12 C 8 4, 20 2, 30 6 L36 2 L34 10 C 32 18, 16 20, 6 18 Z" fill="#B5232F"/><path d="M26 5 L29 -4 L32 5 Z" fill="#B5232F"/><path d="M10 10 L20 -2 L22 12 Z" fill="#8E1A24"/></g><text x="40" y="94" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="800" font-size="10" fill="#fff" letter-spacing="1">WV</text></svg></div>
+          </div>
+        </div>
+        <div class="wv-grid">
+          <label class="wv-field wv-span">Type
+            <select name="q11_q11_dropdown9" required>
+              <option value="">Choose one</option>
+              <option>Consumer advocate</option><option>Public or municipal utility</option><option>Public service district</option><option>Community or faith group</option><option>Local business</option><option>Local government</option>
+            </select>
+          </label>
+          <div class="wv-span wv-row2">
+            <label class="wv-field">Contact first name<input type="text" name="q12_q12_fullname10[first]" autocomplete="given-name" required></label>
+            <label class="wv-field">Contact last name<input type="text" name="q12_q12_fullname10[last]" autocomplete="family-name" required></label>
+          </div>
+          <label class="wv-field wv-span">Contact email<input type="email" name="q13_q13_email11" autocomplete="email" required></label>
+          <label class="wv-upload wv-span">
+            <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 22V6M9 13l7-7 7 7M5 27h22" fill="none" stroke="#1E6E66" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong class="wv-upload-title">Upload your logo for the member wall</strong>PNG or SVG, transparent background preferred</span>
+            <input type="file" name="q14_q14_fileupload12[]" accept=".png,.svg,image/png,image/svg+xml">
+          </label>
+          <label class="wv-check wv-span"><input type="checkbox" name="q15_q15_checkbox13[]" value="Our organization endorses the WVAW principles and agrees to be listed as a coalition member." required>Our organization endorses the WVAW principles and agrees to be listed as a coalition member.</label>
+        </div>
+      </div>
+
+      <button type="submit" class="wv-submit"><span class="wv-submit-label">Send my pledge</span> <span aria-hidden="true">→</span></button>
+    </div>
+  </div>
+</form>
+
+<script>
+(function () {
+  var form = document.getElementById('wvaw-pledge');
+  if (!form) return;
+  var ind = form.querySelector('.wv-ind'), org = form.querySelector('.wv-org');
+  var label = form.querySelector('.wv-submit-label');
+
+  // Show the right half of the postcard and switch off the other half's fields
+  // so they aren't required or sent to Jotform.
+  function setMode() {
+    var isOrg = form.querySelector('input[name="q2_q2_radio0"]:checked').value === 'Organization';
+    ind.hidden = isOrg; org.hidden = !isOrg;
+    ind.querySelectorAll('input,select').forEach(function (el) { el.disabled = isOrg; });
+    org.querySelectorAll('input,select').forEach(function (el) { el.disabled = !isOrg; });
+    label.textContent = isOrg ? 'Join the coalition' : 'Send my pledge';
+  }
+  form.querySelectorAll('input[name="q2_q2_radio0"]').forEach(function (r) { r.addEventListener('change', setMode); });
+  setMode();
+
+  // Show the chosen logo file name
+  var file = org.querySelector('input[type=file]'), title = org.querySelector('.wv-upload-title');
+  file.addEventListener('change', function () { if (file.files[0]) title.textContent = file.files[0].name; });
+
+  // Prevent double submits
+  form.addEventListener('submit', function () {
+    var btn = form.querySelector('.wv-submit');
+    setTimeout(function () { btn.disabled = true; label.textContent = 'Sending…'; }, 0);
+  });
+})();
+</script>
